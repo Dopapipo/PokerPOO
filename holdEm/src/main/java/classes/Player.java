@@ -100,7 +100,6 @@ public class Player implements Comparable<Player> {
 		}
 		this.bet += this.chipStack;
 		this.chipStack = 0;
-		this.hasNotFolded = true;
 		return this.bet;
 	}
 
@@ -177,6 +176,25 @@ public class Player implements Comparable<Player> {
 
 	public boolean isAllIn() {
 		return this.chipStack == 0;
+	}
+	/**
+	 * Call,fold,raise
+	 * For now, we always all-in. 
+	 * @return 1,2,3
+	 */
+	public int getCommand() {
+		return 3;
+	}
+	/**
+	 * We always all-in
+	 * @return
+	 */
+	public int getBetAmount() {
+		return this.getChipStack();
+	}
+	
+	public String toString() {
+		return this.name+" current chips: " + this.chipStack;
 	}
 
 }

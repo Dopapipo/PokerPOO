@@ -1,9 +1,10 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DealerHand {
-	private ArrayList<Card> dealerHand;
+	private List<Card> dealerHand;
 	private Deck deck;
 	public DealerHand(Deck deck) {
 		this.dealerHand=new ArrayList<>();
@@ -24,14 +25,13 @@ public class DealerHand {
 		this.dealerHand.add(card);
 	}
 	
-	public void addToDealerHand(ArrayList<Card> cards) {
+	public void addToDealerHand(List<Card> cards) {
 		for (Card card : cards) {
 			addToDealerHand(card);
 		}
 	}
-	@SuppressWarnings("unchecked")
-	public ArrayList<Card> getDealerHand() {
-		return (ArrayList <Card>) this.dealerHand.clone();
+	public List<Card> getDealerHand() {
+		return this.dealerHand;
 	}
 	public void printHand() {
 		System.out.println("Dealer"+ " has the following hand :");
@@ -42,7 +42,7 @@ public class DealerHand {
 	public void clear() {
 		this.dealerHand.clear();
 	}
-	public void setHand(ArrayList<Card> cards) {
+	public void setHand(List<Card> cards) {
 		this.dealerHand=cards;
 	}
 }

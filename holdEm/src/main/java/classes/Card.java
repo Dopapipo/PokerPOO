@@ -1,8 +1,6 @@
 package classes;
 
-import java.util.Comparator;
-
-public class Card implements Comparator<Card> {
+public class Card  {
 	// les attributs
 	private CardValue cardValue;
 	private CardColor cardColor;
@@ -58,7 +56,6 @@ public class Card implements Comparator<Card> {
 		return this.getCardValue().compare(card.getCardValue()) > 0;
 	}
 
-	@Override
 	public int compare(Card c1, Card c2) {
 		// TODO Auto-generated method stub
 		return c1.getCardValue().compare(c2.getCardValue());

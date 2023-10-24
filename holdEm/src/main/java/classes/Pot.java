@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.List;
 /**
  * A Pot is used to distribute gains at the end of a round,
  * and holds all the bets. There can be multiple pots when a player goes all-in,
@@ -11,12 +12,12 @@ import java.util.ArrayList;
 public class Pot implements Comparable<Pot> {
 	private int value;
 	private int thresholdBet;
-	private ArrayList<Player> players;
+	private List<Player> players;
 	public Pot() {
 		this.value=0;
 		this.players= new ArrayList<>();
 	}
-	public Pot(ArrayList<Player> players) {
+	public Pot(List<Player> players) {
 		this.players=players;
 	}
 	public void addPlayer(Player player) {
@@ -35,13 +36,16 @@ public class Pot implements Comparable<Pot> {
 	public void setValue(int value) {
 		this.value = value;
 	}
-	public ArrayList<Player> getPlayers() {
-		return players;
+	public List<Player> getPlayers() {
+		List<Player> toReturn = new ArrayList<>();
+		for (Player player : this.players) {
+			toReturn.add(player);
+		}
+		return toReturn;
 	}
-	@SuppressWarnings("unchecked")
-	public void setPlayers(ArrayList<Player> players) {
-		//clone player list to avoid list side effects ("effets de bord")
-		this.players = (ArrayList<Player>) players.clone();
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
 	public int getThresholdBet() {
 		return thresholdBet;

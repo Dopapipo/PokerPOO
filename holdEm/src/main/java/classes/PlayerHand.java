@@ -1,11 +1,12 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerHand {
-	private ArrayList<Card> hand;
+	private List<Card> hand;
 	
-	public ArrayList<Card> getPlayerHand() {
+	public List<Card> getPlayerHand() {
 		return this.hand;
 	}
 	

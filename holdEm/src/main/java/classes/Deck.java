@@ -1,10 +1,11 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Deck {
-	private ArrayList<Card> cards;
+	private List<Card> cards;
 	private Random random = new Random();
 
 	/**
@@ -70,12 +71,12 @@ public class Deck {
 	 * 
 	 * @return a 5 card hand
 	 */
-	public ArrayList<Card> newRandomHand() {
+	public List<Card> newRandomHand() {
 		return this.getRandomCards(5);
 
 	};
 
-	public void returnToDeck(ArrayList<Card> cards) {
+	public void returnToDeck(List<Card> cards) {
 		for (Card card : cards) {
 			this.cards.add(card);
 		}
@@ -103,5 +104,8 @@ public class Deck {
 			this.cards.add(i, new Card(CardValue.values()[k], CardColor.HEART));
 			k++;
 		}
+	}
+	public void discard() {
+		this.cards.remove(random.nextInt(this.cards.size()));
 	}
 }

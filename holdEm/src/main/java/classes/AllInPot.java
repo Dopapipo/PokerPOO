@@ -1,7 +1,9 @@
 package classes;
 
 import java.util.ArrayList;
-
+/**
+ * An all-in pot's purpose is to payout all-in players accordingly in case they win.
+ */
 public class AllInPot extends Pot {
 	private Player player;
 	private int allInBet;

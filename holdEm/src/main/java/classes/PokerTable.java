@@ -1,38 +1,30 @@
 package classes;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 import logic.WinConditionLogic;
 
-//TODO : Implement not asking a player for call once he is all-in, DONE
-//implement correct win when a player all-ins with less chips 
-//than the others are betting (A all ins with 50, other 2 players bet 200, 
-//if A wins then he gets 150, and the other 2 players compete for the rest.)
-//Separate display and logic for PokerTable
-//Probably need to create a Pot object and a list of Pots in PokerTable
-//when someone all ins, create a separate pot.
-//Implement increasing blinds every x turns
+//TODO :Separate display and logic for PokerTable
 
 public class PokerTable {
-	private ArrayList<Player> playerList;
-	private ArrayList<Player> currentlyPlaying;
-	private DealerHand dealer;
-	private Deck deck;
-	private int totalBets;
-	private int highestBet;
-	private int numberOfTurns;
-	private Blind bigBlind;
-	private Blind smallBlind;
-	private Blind donor;
-	private final int defaultBlind = 5;
-	private final int turnsForBlindIncrease = 5;
-	Scanner scanner = new Scanner(System.in);
+	protected List<Player> playerList;
+	protected List<Player> currentlyPlaying;
+	protected DealerHand dealer;
+	protected Deck deck;
+	protected int totalBets;
+	protected int highestBet;
+	protected int numberOfTurns;
+	protected Blind bigBlind;
+	protected Blind smallBlind;
+	protected Blind donor;
+	protected final int defaultBlind = 5;
+	protected final int turnsForBlindIncrease = 5;
+	protected Scanner scanner = new Scanner(System.in);
 
-	// Pot implementation start
-	ArrayList<Pot> pots = new ArrayList<>();
+	protected List<Pot> pots = new ArrayList<>();
 
 	public PokerTable() {
 		this.playerList = new ArrayList<>();
@@ -44,18 +36,21 @@ public class PokerTable {
 	}
 
 	public PokerTable(Player player) {
-		this.playerList = new ArrayList<>();
+		this();
 		this.playerList.add(player);
-		this.deck = new Deck();
-		this.dealer = new DealerHand(deck);
+		this.currentlyPlaying.add(player);
 	}
 
-	@SuppressWarnings("unchecked")
-	public PokerTable(ArrayList<Player> players) {
+	public PokerTable(List<Player> players) {
 		this.playerList = players;
 		this.deck = new Deck();
 		this.dealer = new DealerHand(deck);
-		this.currentlyPlaying = (ArrayList<Player>) this.playerList.clone();
+		this.currentlyPlaying= new ArrayList<>();
+		for (Player player : this.playerList) {
+			if (player.getChipStack()>0) {
+				this.currentlyPlaying.add(player);
+			}
+		}
 	}
 
 	public int howManyAreStillPlaying() {
@@ -132,7 +127,7 @@ public class PokerTable {
 	 * Deals 2 new cards to every player from the current deck
 	 */
 	public void giveCards() {
-		for (Player player : this.playerList) {
+		for (Player player : this.currentlyPlaying) {
 			player.setHand(new PlayerHand(this.deck.getRandomCards(2)));
 		}
 	}
@@ -145,7 +140,7 @@ public class PokerTable {
 		// Implementation of support for constant raising : while
 		// not everyone has called/folded (i.e. there's still a player raising)
 		// We ask every other player for a call/fold/raise
-		ArrayList<Boolean> playersCalled = new ArrayList<>();
+		List<Boolean> playersCalled = new ArrayList<>();
 		while (!everyoneCalled) {
 			playersCalled.clear();
 			for (Player player : this.currentlyPlaying) {
@@ -221,8 +216,8 @@ public class PokerTable {
 	 * @param players
 	 * @return
 	 */
-	public ArrayList<Player> checkWhoWins(ArrayList<Player> players) {
-		ArrayList<Player> playersThatWon = new ArrayList<>();
+	public List<Player> checkWhoWins(List<Player> players) {
+		List<Player> playersThatWon = new ArrayList<>();
 		for (Player player : players) {
 			player.setWinCombination(WinConditionLogic.findWinningCombination(dealer, player.getPlayerHand()));
 		}
@@ -268,7 +263,7 @@ public class PokerTable {
 	 * 
 	 * @param playersThatWon
 	 */
-	public void endTurn(ArrayList<Player> playersThatWon) {
+	public void endTurn(List<Player> playersThatWon) {
 		int gainSplit = playersThatWon.size();
 		this.calculateTotalPot();
 		for (Player player : playersThatWon) {
@@ -323,6 +318,7 @@ public class PokerTable {
 	public void askBlindPayment() {
 		this.bigBlind.getPlayer().bet(this.bigBlind.getValue());
 		this.smallBlind.getPlayer().bet(this.smallBlind.getValue());
+		this.findHighestBet();
 	}
 
 	/**
@@ -344,26 +340,12 @@ public class PokerTable {
 		this.smallBlind.increase(defaultBlind / 2);
 	}
 
-	public void startTurn() {
-		createPot();
-		this.giveCards();
-		this.initializeBlinds();
-		this.askBlindPayment();
-		this.findHighestBet();
-		int playersInRound = currentlyPlaying.size();
-		playersInRound = this.askForBets(playersInRound);
-		dealer.flop();
-		dealer.printHand();
-		playersInRound = this.askForBets(playersInRound);
-		dealer.turn();
-		dealer.printHand();
-		playersInRound = this.askForBets(playersInRound);
-		dealer.river();
-		dealer.printHand();
-		playersInRound = this.askForBets(playersInRound);
-		this.endTurn(this.checkWhoWins(this.playerList));
-	}
-
+	/**
+	 * Used to check if it makes sense to create a new AllIn Pot or not. Creating a
+	 * new AllInPot makes sense if a player is all-in with less chips than other
+	 * players, or if at least 2 more players have the possibility to bet after the
+	 * player we're making a pot for is all-in.
+	 */
 	public boolean checkIfAnyoneCanStillBet() {
 		int numberOfPlayersStillBetting = this.playerList.size();
 		boolean flag = false;
@@ -372,17 +354,16 @@ public class PokerTable {
 			if (player.isAllIn() || !player.hasNotFolded()) {
 				numberOfPlayersStillBetting--;
 			}
-			if (player.getBet()!=bet) {
+			if (player.getBet() != bet) {
 				flag = true;
 			}
 		}
-		return numberOfPlayersStillBetting >= 2||flag;
+		return numberOfPlayersStillBetting >= 2 || flag;
 	}
 	// pot implementation
 	// -------------------------------------------------------------------
 
 	// we will create a new pot when a player all-ins
-	// and only if at least 2 players can still bet
 
 	/**
 	 * Creates a new pot, used for pot initialization of the first pot
@@ -405,12 +386,10 @@ public class PokerTable {
 	 * Updates a pot's value, to be used when no one is all in (all in players will
 	 * all have their separate pots)
 	 */
-	@SuppressWarnings("unchecked")
 	public void updatePotValue(Pot pot) {
 		// set value to 0 then add every player bet
-		ArrayList<Player> playersToConsider = (ArrayList<Player>) this.playerList.clone();
 		pot.setValue(0);
-		for (Player player : playersToConsider) {
+		for (Player player : this.currentlyPlaying) {
 			pot.addBet(player.getBet());
 		}
 
@@ -423,6 +402,7 @@ public class PokerTable {
 	 */
 	public void makePotForAllInPlayer(Player player) {
 		this.pots.add(new AllInPot(player.getBet(), player));
+		// work on the pot we just created
 		AllInPot pot = (AllInPot) this.pots.get(this.pots.size() - 1);
 		int playerBet = pot.getAllInBet();
 		for (Player playa : this.playerList) {
@@ -465,9 +445,7 @@ public class PokerTable {
 		// Implementation of support for constant raising : while
 		// not everyone has called/folded (i.e. there's still a player raising)
 		// We ask every other player for a call/fold/raise
-		ArrayList<Boolean> playersCalled = new ArrayList<>();
 		while (!everyoneCalled) {
-			playersCalled.clear();
 			for (Player player : this.currentlyPlaying) {
 				// if there's more than one player to ask, player hasn't folded, isn't all in
 				// and isn't the one currently raising,
@@ -504,7 +482,6 @@ public class PokerTable {
 								aPlayer.setCurrentlyRaising(false);
 							}
 							player.setCurrentlyRaising((true));
-							playersCalled.add(false);
 							player.bet(this.highestBet - player.getBet() + x);
 						} else {
 							player.call(this.highestBet - player.getBet());
@@ -520,32 +497,33 @@ public class PokerTable {
 			// If no players raised, playersCalled will be empty, so everyoneCalled
 			// will be true.
 			everyoneCalled = true;
-			for (Boolean playerCalled : playersCalled) {
-				if (!playerCalled) {
+			for (Player player : this.currentlyPlaying) {
+				if (player.getBet() != this.highestBet) {
 					everyoneCalled = false;
 					break;
 				}
 			}
 			makeAllInPotIfNecessary(playersInRound);
-			
+
 		}
 		// reset player raise state for next dealer card
 		this.resetPlayersRaise();
 		return playersInRound;
 	}
-	
+
 	public int makeAllInPotIfNecessary(int playersInRound) {
 		for (Player player : this.currentlyPlaying) {
 
 			if (player.hasNotFolded() && player.isAllIn()) {
 				playersInRound--;
-				if (this.checkIfAnyoneCanStillBet()) 
+				if (this.checkIfAnyoneCanStillBet())
 					this.makePotForAllInPlayer(player);
-				
+
 			}
 		}
 		return playersInRound;
 	}
+
 	/**
 	 * A player is still competing for the base pot when he managed to pay through
 	 * every raise without being all in OR if he's all in but with the most chips
@@ -576,21 +554,21 @@ public class PokerTable {
 		clearPots();
 		resetPlayers();
 	}
-	//TODO: Spaghetti code : pot system doesn't give back the money to 
-	//the players that bet more than some all in players
+
 	public void payoutPot(Pot pot) {
 		int value = pot.getValue();
 		if (value <= 0) {
 			return;
 		}
-		ArrayList<Player> winners = checkWhoWins(pot.getPlayers());
+		List<Player> winners = checkWhoWins(pot.getPlayers());
+		System.out.println(winners);
 		int gainSplit = winners.size();
 		for (Player player : winners) {
 			player.won(value / gainSplit);
 			System.out.println(
 					player.getName() + " won " + value / gainSplit + " with hand " + player.getWinningCombination());
 		}
-		
+
 		for (Pot aPot : this.pots) {
 			aPot.setValue(aPot.getValue() - value);
 		}
@@ -600,9 +578,11 @@ public class PokerTable {
 		for (Player player : this.playerList) {
 			if (player.hasNotFolded()) {
 				System.out.println(player.getName() + " has the hand: " + player.getWinningCombination());
+				player.printHand();
 			}
 		}
 	}
+
 	public void turnCards() {
 		this.giveCards();
 		this.initializeBlinds();
@@ -620,11 +600,12 @@ public class PokerTable {
 		dealer.printHand();
 		this.askForBetsWithPots(playersInRound);
 	}
+
 	public void turnPots() {
 		createPot();
 		makeAllInPotIfNecessary(0);
 		this.updateAllPotsValues();
-		//find highest bet (useful for unit testing)
+		// find highest bet (useful for unit testing)
 		this.findHighestBet();
 		// threshold for base pot is the highest bet
 		this.setThresholdForBasePot();
@@ -632,25 +613,29 @@ public class PokerTable {
 		this.addCompetingPlayersToBasePot();
 		// sort the pots by increasing order
 		this.pots.sort(null);
-		/*for (int i = 0;i<this.pots.size();i++) {
-			System.out.println("i=" +i + " " +this.pots.get(i));
-		}
-		*/
+		/*
+		 * for (int i = 0;i<this.pots.size();i++) { System.out.println("i=" +i + " "
+		 * +this.pots.get(i)); }
+		 */
 		for (int i = 0; i < this.pots.size(); i++) {
 			payoutPot(this.pots.get(i));
 		}
 	}
+
 	public void startTurnWithPots() {
 		turnCards();
 		turnPots();
 		this.printAllHands();
+		this.getDealer().printHand();
 		this.resetTable();
 	}
+
 	public DealerHand getDealer() {
 		return this.dealer;
 	}
-	public ArrayList<Player> getPlayers() {
+
+	public List<Player> getPlayers() {
 		return this.currentlyPlaying;
 	}
-	
+
 }
