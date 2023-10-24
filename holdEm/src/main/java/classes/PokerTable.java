@@ -561,7 +561,7 @@ public class PokerTable {
 			return;
 		}
 		List<Player> winners = checkWhoWins(pot.getPlayers());
-		System.out.println(winners);
+		System.out.println( "Winner list: " + winners);
 		int gainSplit = winners.size();
 		for (Player player : winners) {
 			player.won(value / gainSplit);
