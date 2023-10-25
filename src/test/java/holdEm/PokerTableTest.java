@@ -1,8 +1,9 @@
 package holdEm;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import classes.Card;
@@ -47,8 +48,8 @@ class PokerTableTest {
 		table.getPlayers().get(1).bet(40);
 		table.turnPots();
 		
-		Assert.assertEquals(player1.getChipStack(),90);
-		Assert.assertEquals(player2.getChipStack(), 10);
+		assertEquals(player1.getChipStack(),90);
+		assertEquals(player2.getChipStack(), 10);
 	}
 	
 	@Test
@@ -86,8 +87,8 @@ class PokerTableTest {
 		table.turnPots();
 		
 		//assert
-		Assert.assertEquals(player1.getChipStack(),100);
-		Assert.assertEquals(player2.getChipStack(), 0);
+		assertEquals(player1.getChipStack(),100);
+		assertEquals(player2.getChipStack(), 0);
 	}
 	@Test
 	/**
@@ -124,8 +125,8 @@ class PokerTableTest {
 				table.turnPots();
 				
 				//assert
-				Assert.assertEquals(player1.getChipStack(),150);
-				Assert.assertEquals(player2.getChipStack(), 0);
+				assertEquals(player1.getChipStack(),150);
+				assertEquals(player2.getChipStack(), 0);
 	}
 	@Test
 	/**
@@ -161,8 +162,8 @@ class PokerTableTest {
 				table.turnPots();
 				
 				//assert
-				Assert.assertEquals(player1.getChipStack(),100);
-				Assert.assertEquals(player2.getChipStack(), 50);
+				assertEquals(player1.getChipStack(),100);
+				assertEquals(player2.getChipStack(), 50);
 	}
 	
 	//TODO : Test with 3+ players. Test with multiple all-in players, that each
@@ -206,9 +207,9 @@ class PokerTableTest {
 		table.turnPots();
 		
 		//assert
-		Assert.assertEquals(player1.getChipStack(),0);
-		Assert.assertEquals(player2.getChipStack(),0);
-		Assert.assertEquals(player3.getChipStack(), 300);
+		assertEquals(player1.getChipStack(),0);
+		assertEquals(player2.getChipStack(),0);
+		assertEquals(player3.getChipStack(), 300);
 	}
 	@Test
 	/**
@@ -250,9 +251,9 @@ class PokerTableTest {
 		table.turnPots();
 		
 		//assert
-		Assert.assertEquals(player1.getChipStack(),0);
-		Assert.assertEquals(player2.getChipStack(),0);
-		Assert.assertEquals(player3.getChipStack(), 170);
+		assertEquals(player1.getChipStack(),0);
+		assertEquals(player2.getChipStack(),0);
+		assertEquals(player3.getChipStack(), 170);
 	}
 	@Test
 	/**
@@ -293,9 +294,9 @@ class PokerTableTest {
 		table.turnPots();
 		
 		//assert
-		Assert.assertEquals(player1.getChipStack(),0);
-		Assert.assertEquals(player2.getChipStack(),40);
-		Assert.assertEquals(player3.getChipStack(), 170);
+		assertEquals(player1.getChipStack(),0);
+		assertEquals(player2.getChipStack(),40);
+		assertEquals(player3.getChipStack(), 170);
 	}
 	
 }
