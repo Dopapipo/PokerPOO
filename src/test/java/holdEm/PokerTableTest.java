@@ -3,6 +3,7 @@ package holdEm;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -12,6 +13,7 @@ import classes.CardValue;
 import classes.Player;
 import classes.PlayerHand;
 import classes.PokerTable;
+import classes.PokerTableAutomatisee;
 
 class PokerTableTest {
 
@@ -27,17 +29,17 @@ class PokerTableTest {
 		Player player1 = new Player("Flavio",50);
 		Player player2 = new Player ("Pablo", 50);
 		PokerTable table = new PokerTable();
-		ArrayList<Card> p1Hand = new ArrayList<>();
+		List<Card> p1Hand = new ArrayList<>();
 		p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
 		p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
 		table.addPlayer(player1);
 		table.addPlayer(player2);
 		player1.setHand(new PlayerHand(p1Hand));
-		ArrayList<Card> p2Hand = new ArrayList<>();
+		List<Card> p2Hand = new ArrayList<>();
 		p2Hand.add(new Card(CardValue.NINE,CardColor.CLOVER));
 		p2Hand.add(new Card(CardValue.NINE,CardColor.HEART));
 		player2.setHand(new PlayerHand(p2Hand));
-		ArrayList <Card> dealerHand= new ArrayList<>();
+		List<Card> dealerHand= new ArrayList<>();
 		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
@@ -63,17 +65,17 @@ class PokerTableTest {
 		Player player1 = new Player("Flavio",50);
 		Player player2 = new Player ("Pablo", 50);
 		PokerTable table = new PokerTable();
-		ArrayList<Card> p1Hand = new ArrayList<>();
+		List<Card> p1Hand = new ArrayList<>();
 		p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
 		p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
 		table.addPlayer(player1);
 		table.addPlayer(player2);
 		player1.setHand(new PlayerHand(p1Hand));
-		ArrayList<Card> p2Hand = new ArrayList<>();
+		List<Card> p2Hand = new ArrayList<>();
 		p2Hand.add(new Card(CardValue.NINE,CardColor.CLOVER));
 		p2Hand.add(new Card(CardValue.NINE,CardColor.HEART));
 		player2.setHand(new PlayerHand(p2Hand));
-		ArrayList <Card> dealerHand= new ArrayList<>();
+		List<Card> dealerHand= new ArrayList<>();
 		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
@@ -101,17 +103,17 @@ class PokerTableTest {
 				Player player1 = new Player("Flavio",100);
 				Player player2 = new Player ("Pablo", 50);
 				PokerTable table = new PokerTable();
-				ArrayList<Card> p1Hand = new ArrayList<>();
+				List<Card> p1Hand = new ArrayList<>();
 				p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
 				p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
 				table.addPlayer(player1);
 				table.addPlayer(player2);
 				player1.setHand(new PlayerHand(p1Hand));
-				ArrayList<Card> p2Hand = new ArrayList<>();
+				List<Card> p2Hand = new ArrayList<>();
 				p2Hand.add(new Card(CardValue.NINE,CardColor.CLOVER));
 				p2Hand.add(new Card(CardValue.NINE,CardColor.HEART));
 				player2.setHand(new PlayerHand(p2Hand));
-				ArrayList <Card> dealerHand= new ArrayList<>();
+				List<Card> dealerHand= new ArrayList<>();
 				dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
 				dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
 				dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
@@ -138,17 +140,17 @@ class PokerTableTest {
 				Player player1 = new Player("Flavio",50);
 				Player player2 = new Player ("Pablo", 100);
 				PokerTable table = new PokerTable();
-				ArrayList<Card> p1Hand = new ArrayList<>();
+				List<Card> p1Hand = new ArrayList<>();
 				p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
 				p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
 				table.addPlayer(player1);
 				table.addPlayer(player2);
 				player1.setHand(new PlayerHand(p1Hand));
-				ArrayList<Card> p2Hand = new ArrayList<>();
+				List<Card> p2Hand = new ArrayList<>();
 				p2Hand.add(new Card(CardValue.NINE,CardColor.CLOVER));
 				p2Hand.add(new Card(CardValue.NINE,CardColor.HEART));
 				player2.setHand(new PlayerHand(p2Hand));
-				ArrayList <Card> dealerHand= new ArrayList<>();
+				List<Card> dealerHand= new ArrayList<>();
 				dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
 				dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
 				dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
@@ -177,22 +179,22 @@ class PokerTableTest {
 		Player player2 = new Player ("Pablo", 100);
 		Player player3 = new Player("Mingo", 100);
 		PokerTable table = new PokerTable();
-		ArrayList<Card> p1Hand = new ArrayList<>();
+		List<Card> p1Hand = new ArrayList<>();
 		p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
 		p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
 		player1.setHand(new PlayerHand(p1Hand));
-		ArrayList<Card> p2Hand = new ArrayList<>();
+		List<Card> p2Hand = new ArrayList<>();
 		p2Hand.add(new Card(CardValue.NINE,CardColor.CLOVER));
 		p2Hand.add(new Card(CardValue.NINE,CardColor.HEART));
 		player2.setHand(new PlayerHand(p2Hand));
-		ArrayList<Card> p3Hand = new ArrayList<>();
+		List<Card> p3Hand = new ArrayList<>();
 		p3Hand.add(new Card (CardValue.JACK,CardColor.CLOVER));
 		p3Hand.add(new Card (CardValue.JACK,CardColor.SPADE));
 		player3.setHand(new PlayerHand(p3Hand));
 		table.addPlayer(player1);
 		table.addPlayer(player2);
 		table.addPlayer(player3);
-		ArrayList <Card> dealerHand= new ArrayList<>();
+		List<Card> dealerHand= new ArrayList<>();
 		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
@@ -221,22 +223,22 @@ class PokerTableTest {
 		Player player2 = new Player ("Pablo", 60);
 		Player player3 = new Player("Mingo", 60);
 		PokerTable table = new PokerTable();
-		ArrayList<Card> p1Hand = new ArrayList<>();
+		List<Card> p1Hand = new ArrayList<>();
 		p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
 		p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
 		player1.setHand(new PlayerHand(p1Hand));
-		ArrayList<Card> p2Hand = new ArrayList<>();
+		List<Card> p2Hand = new ArrayList<>();
 		p2Hand.add(new Card(CardValue.NINE,CardColor.CLOVER));
 		p2Hand.add(new Card(CardValue.NINE,CardColor.HEART));
 		player2.setHand(new PlayerHand(p2Hand));
-		ArrayList<Card> p3Hand = new ArrayList<>();
+		List<Card> p3Hand = new ArrayList<>();
 		p3Hand.add(new Card (CardValue.JACK,CardColor.CLOVER));
 		p3Hand.add(new Card (CardValue.JACK,CardColor.SPADE));
 		player3.setHand(new PlayerHand(p3Hand));
 		table.addPlayer(player1);
 		table.addPlayer(player2);
 		table.addPlayer(player3);
-		ArrayList <Card> dealerHand= new ArrayList<>();
+		List<Card> dealerHand= new ArrayList<>();
 		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
@@ -264,22 +266,22 @@ class PokerTableTest {
 		Player player2 = new Player ("Pablo", 100);
 		Player player3 = new Player("Mingo", 60);
 		PokerTable table = new PokerTable();
-		ArrayList<Card> p1Hand = new ArrayList<>();
+		List<Card> p1Hand = new ArrayList<>();
 		p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
 		p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
 		player1.setHand(new PlayerHand(p1Hand));
-		ArrayList<Card> p2Hand = new ArrayList<>();
+		List<Card> p2Hand = new ArrayList<>();
 		p2Hand.add(new Card(CardValue.NINE,CardColor.CLOVER));
 		p2Hand.add(new Card(CardValue.NINE,CardColor.HEART));
 		player2.setHand(new PlayerHand(p2Hand));
-		ArrayList<Card> p3Hand = new ArrayList<>();
+		List<Card> p3Hand = new ArrayList<>();
 		p3Hand.add(new Card (CardValue.JACK,CardColor.CLOVER));
 		p3Hand.add(new Card (CardValue.JACK,CardColor.SPADE));
 		player3.setHand(new PlayerHand(p3Hand));
 		table.addPlayer(player1);
 		table.addPlayer(player2);
 		table.addPlayer(player3);
-		ArrayList <Card> dealerHand= new ArrayList<>();
+		List<Card> dealerHand= new ArrayList<>();
 		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
 		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
@@ -297,6 +299,261 @@ class PokerTableTest {
 		assertEquals(player1.getChipStack(),0);
 		assertEquals(player2.getChipStack(),40);
 		assertEquals(player3.getChipStack(), 170);
+	}
+	//4 player tests
+	
+	@Test
+	/**
+	 * Fourth player wins
+	 */
+	void FourPlayersLastWins() {
+		Player player1 = new Player("Flavio",200);
+		Player player2 = new Player ("Pablo", 200);
+		Player player3 = new Player("Mingo", 200);
+		Player player4 = new Player("Oslo",200);
+		PokerTableAutomatisee table = new PokerTableAutomatisee();
+		List<Card> p1Hand = new ArrayList<>();
+		p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
+		p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
+		player1.setHand(new PlayerHand(p1Hand));
+		List<Card> p2Hand = new ArrayList<>();
+		p2Hand.add(new Card(CardValue.NINE,CardColor.CLOVER));
+		p2Hand.add(new Card(CardValue.NINE,CardColor.HEART));
+		player2.setHand(new PlayerHand(p2Hand));
+		List<Card> p3Hand = new ArrayList<>();
+		p3Hand.add(new Card (CardValue.JACK,CardColor.CLOVER));
+		p3Hand.add(new Card (CardValue.JACK,CardColor.SPADE));
+		player3.setHand(new PlayerHand(p3Hand));
+		List <Card> p4Hand = new ArrayList<>();
+		p4Hand.add(new Card (CardValue.QUEEN,CardColor.CLOVER));
+		p4Hand.add(new Card (CardValue.QUEEN,CardColor.SPADE));
+		player4.setHand(new PlayerHand(p4Hand));
+		table.addPlayer(player1);
+		table.addPlayer(player2);
+		table.addPlayer(player3);
+		table.addPlayer(player4);
+		List<Card> dealerHand= new ArrayList<>();
+		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
+		dealerHand.add(new Card(CardValue.SIX,CardColor.HEART));
+		dealerHand.add(new Card(CardValue.SEVEN,CardColor.SPADE));
+		table.getDealer().setHand(dealerHand);
+		
+		table.getPlayers().get(0).bet(200);
+		table.getPlayers().get(1).bet(200);
+		table.getPlayers().get(2).bet(200);
+		table.getPlayers().get(3).bet(200);
+		table.turnPots();
+		
+		//assert
+		assertEquals(player1.getChipStack(),0);
+		assertEquals(player2.getChipStack(),0);
+		assertEquals(player3.getChipStack(), 0);
+		assertEquals(player4.getChipStack(),800);
+	}
+	
+	
+	@Test
+	/**
+	 * Third player wins
+	 */
+	void FourPlayersThirdWins() {
+		Player player1 = new Player("Flavio",200);
+		Player player2 = new Player ("Pablo", 200);
+		Player player3 = new Player("Mingo", 200);
+		Player player4 = new Player("Oslo",200);
+		PokerTableAutomatisee table = new PokerTableAutomatisee();
+		List<Card> p1Hand = new ArrayList<>();
+		p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
+		p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
+		player1.setHand(new PlayerHand(p1Hand));
+		List<Card> p2Hand = new ArrayList<>();
+		p2Hand.add(new Card(CardValue.NINE,CardColor.CLOVER));
+		p2Hand.add(new Card(CardValue.NINE,CardColor.HEART));
+		player2.setHand(new PlayerHand(p2Hand));
+		List<Card> p3Hand = new ArrayList<>();
+		p3Hand.add(new Card (CardValue.QUEEN,CardColor.CLOVER));
+		p3Hand.add(new Card (CardValue.QUEEN,CardColor.SPADE));
+		player3.setHand(new PlayerHand(p3Hand));
+		List <Card> p4Hand = new ArrayList<>();
+		p4Hand.add(new Card (CardValue.JACK,CardColor.CLOVER));
+		p4Hand.add(new Card (CardValue.JACK,CardColor.SPADE));
+		player4.setHand(new PlayerHand(p4Hand));
+		table.addPlayer(player1);
+		table.addPlayer(player2);
+		table.addPlayer(player3);
+		table.addPlayer(player4);
+		List<Card> dealerHand= new ArrayList<>();
+		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
+		dealerHand.add(new Card(CardValue.SIX,CardColor.HEART));
+		dealerHand.add(new Card(CardValue.SEVEN,CardColor.SPADE));
+		table.getDealer().setHand(dealerHand);
+		
+		table.getPlayers().get(0).bet(200);
+		table.getPlayers().get(1).bet(200);
+		table.getPlayers().get(2).bet(200);
+		table.getPlayers().get(3).bet(200);
+		table.turnPots();
+		
+		//assert
+		assertEquals(player1.getChipStack(),0);
+		assertEquals(player2.getChipStack(),0);
+		assertEquals(player3.getChipStack(), 800);
+		assertEquals(player4.getChipStack(),0);
+	}
+	@Test
+	/**
+	 * Second player wins
+	 */
+	void FourPlayersSecondWins() {
+		Player player1 = new Player("Flavio",200);
+		Player player2 = new Player ("Pablo", 200);
+		Player player3 = new Player("Mingo", 200);
+		Player player4 = new Player("Oslo",200);
+		PokerTableAutomatisee table = new PokerTableAutomatisee();
+		List<Card> p1Hand = new ArrayList<>();
+		p1Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
+		p1Hand.add(new Card(CardValue.TEN,CardColor.DIAMOND));
+		player1.setHand(new PlayerHand(p1Hand));
+		List<Card> p2Hand = new ArrayList<>();
+		p2Hand.add(new Card(CardValue.QUEEN,CardColor.CLOVER));
+		p2Hand.add(new Card(CardValue.QUEEN,CardColor.HEART));
+		player2.setHand(new PlayerHand(p2Hand));
+		List<Card> p3Hand = new ArrayList<>();
+		p3Hand.add(new Card (CardValue.NINE,CardColor.CLOVER));
+		p3Hand.add(new Card (CardValue.NINE,CardColor.SPADE));
+		player3.setHand(new PlayerHand(p3Hand));
+		List <Card> p4Hand = new ArrayList<>();
+		p4Hand.add(new Card (CardValue.JACK,CardColor.CLOVER));
+		p4Hand.add(new Card (CardValue.JACK,CardColor.SPADE));
+		player4.setHand(new PlayerHand(p4Hand));
+		table.addPlayer(player1);
+		table.addPlayer(player2);
+		table.addPlayer(player3);
+		table.addPlayer(player4);
+		List<Card> dealerHand= new ArrayList<>();
+		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
+		dealerHand.add(new Card(CardValue.SIX,CardColor.HEART));
+		dealerHand.add(new Card(CardValue.SEVEN,CardColor.SPADE));
+		table.getDealer().setHand(dealerHand);
+		
+		table.getPlayers().get(0).bet(200);
+		table.getPlayers().get(1).bet(200);
+		table.getPlayers().get(2).bet(200);
+		table.getPlayers().get(3).bet(200);
+		table.turnPots();
+		
+		//assert
+		assertEquals(player1.getChipStack(),0);
+		assertEquals(player2.getChipStack(),800);
+		assertEquals(player3.getChipStack(), 0);
+		assertEquals(player4.getChipStack(),0);
+	}
+	
+	@Test
+	/**
+	 * First player wins
+	 */
+	void FourPlayersFirstWins() {
+		Player player1 = new Player("Flavio",200);
+		Player player2 = new Player ("Pablo", 200);
+		Player player3 = new Player("Mingo", 200);
+		Player player4 = new Player("Oslo",200);
+		PokerTableAutomatisee table = new PokerTableAutomatisee();
+		List<Card> p1Hand = new ArrayList<>();
+		p1Hand.add(new Card(CardValue.QUEEN,CardColor.CLOVER));
+		p1Hand.add(new Card(CardValue.QUEEN,CardColor.DIAMOND));
+		player1.setHand(new PlayerHand(p1Hand));
+		List<Card> p2Hand = new ArrayList<>();
+		p2Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
+		p2Hand.add(new Card(CardValue.TEN,CardColor.HEART));
+		player2.setHand(new PlayerHand(p2Hand));
+		List<Card> p3Hand = new ArrayList<>();
+		p3Hand.add(new Card (CardValue.NINE,CardColor.CLOVER));
+		p3Hand.add(new Card (CardValue.NINE,CardColor.SPADE));
+		player3.setHand(new PlayerHand(p3Hand));
+		List <Card> p4Hand = new ArrayList<>();
+		p4Hand.add(new Card (CardValue.JACK,CardColor.CLOVER));
+		p4Hand.add(new Card (CardValue.JACK,CardColor.SPADE));
+		player4.setHand(new PlayerHand(p4Hand));
+		table.addPlayer(player1);
+		table.addPlayer(player2);
+		table.addPlayer(player3);
+		table.addPlayer(player4);
+		List<Card> dealerHand= new ArrayList<>();
+		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
+		dealerHand.add(new Card(CardValue.SIX,CardColor.HEART));
+		dealerHand.add(new Card(CardValue.SEVEN,CardColor.SPADE));
+		table.getDealer().setHand(dealerHand);
+		
+		table.getPlayers().get(0).bet(200);
+		table.getPlayers().get(1).bet(200);
+		table.getPlayers().get(2).bet(200);
+		table.getPlayers().get(3).bet(200);
+		table.turnPots();
+		
+		//assert
+		assertEquals(player1.getChipStack(),800);
+		assertEquals(player2.getChipStack(),0);
+		assertEquals(player3.getChipStack(), 0);
+		assertEquals(player4.getChipStack(),0);
+	}
+	@Test
+	/**
+	 * Only 2 players left when started with 4
+	 */
+	void twoLeftOutOfFour() {
+		Player player1 = new Player("Flavio",400);
+		Player player2 = new Player ("Pablo", 0);
+		Player player3 = new Player("Mingo", 400);
+		Player player4 = new Player("Oslo",0);
+		PokerTableAutomatisee table = new PokerTableAutomatisee();
+		List<Card> p1Hand = new ArrayList<>();
+		p1Hand.add(new Card(CardValue.QUEEN,CardColor.CLOVER));
+		p1Hand.add(new Card(CardValue.QUEEN,CardColor.DIAMOND));
+		player1.setHand(new PlayerHand(p1Hand));
+		List<Card> p2Hand = new ArrayList<>();
+		p2Hand.add(new Card(CardValue.TEN,CardColor.CLOVER));
+		p2Hand.add(new Card(CardValue.TEN,CardColor.HEART));
+		player2.setHand(new PlayerHand(p2Hand));
+		List<Card> p3Hand = new ArrayList<>();
+		p3Hand.add(new Card (CardValue.NINE,CardColor.CLOVER));
+		p3Hand.add(new Card (CardValue.NINE,CardColor.SPADE));
+		player3.setHand(new PlayerHand(p3Hand));
+		List <Card> p4Hand = new ArrayList<>();
+		p4Hand.add(new Card (CardValue.JACK,CardColor.CLOVER));
+		p4Hand.add(new Card (CardValue.JACK,CardColor.SPADE));
+		player4.setHand(new PlayerHand(p4Hand));
+		table.addPlayer(player1);
+		table.addPlayer(player2);
+		table.addPlayer(player3);
+		table.addPlayer(player4);
+		List<Card> dealerHand= new ArrayList<>();
+		dealerHand.add(new Card(CardValue.TWO,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.THREE,CardColor.CLOVER));
+		dealerHand.add(new Card(CardValue.FIVE,CardColor.DIAMOND));
+		dealerHand.add(new Card(CardValue.SIX,CardColor.HEART));
+		dealerHand.add(new Card(CardValue.SEVEN,CardColor.SPADE));
+		table.getDealer().setHand(dealerHand);
+		
+		table.getPlayers().get(0).bet(200);
+		table.getPlayers().get(1).bet(200);
+		table.getPlayers().get(2).bet(200);
+		table.getPlayers().get(3).bet(200);
+		table.turnPots();
+		
+		//assert
+		assertEquals(player1.getChipStack(),800);
+		assertEquals(player2.getChipStack(),0);
+		assertEquals(player3.getChipStack(), 0);
+		assertEquals(player4.getChipStack(),0);
 	}
 	
 }
